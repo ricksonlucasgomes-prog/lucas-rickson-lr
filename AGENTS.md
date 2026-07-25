@@ -45,7 +45,7 @@ The `sites` remote (`git.chatgpt-team.site/.../appgprj_…`) is the Sites deploy
 
 ## → Delegated to Codex (Lucas asked Claude to hand these over)
 
-1. **Republish the Sites deployment.** The live version still serves the build from before this round: duplicated JSON-LD, the 2 MB `og.png` (now **deleted** — a stale deploy will 404 on it), the old portrait, and no `robots.txt`/`sitemap.xml`. You own the publish step; the local build is clean and ready.
+1. **DONE (Codex, 2026-07-25):** republished Sites version 4 with the consolidated JSON-LD, optimized `og.jpg`, refreshed portrait, crawler files, approved LR mark, and final favicon.
 2. **Make the deployment publicly reachable.** `https://lucas-rickson-neural-violet.growthengineer.chatgpt.site/` answers **401** to anonymous requests (owner-only). While it does, neither Google nor WhatsApp/X can fetch `og.jpg`, so link previews and indexing cannot work at all. Either open it up or tell Lucas which host should serve the public version (Netlify config still exists in `netlify.toml`).
 3. **Decide on `.openai/hosting.json`.** It is tracked and now heads to a *public* GitHub repo. It only holds a Sites `project_id` (an identifier, not a secret), but it is your infrastructure — keep it or gitignore it, your call.
 
