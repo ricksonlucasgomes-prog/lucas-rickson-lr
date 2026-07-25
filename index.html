@@ -90,10 +90,29 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fonts load without blocking the first paint: the sheet is fetched at
+         high priority via preload, then applied by flipping `media` once it
+         arrives. Both families already use font-display:swap, so text paints
+         immediately in the fallback and upgrades in place. On a throttled
+         mobile connection this is the difference between painting at ~1s and
+         waiting on a render-blocking round trip to Google. -->
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
-      rel="stylesheet"
     >
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+      media="print"
+      onload="this.media='all'; this.onload=null;"
+    >
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+      >
+    </noscript>
     <link rel="stylesheet" href="/src/styles.css">
     <!-- Works category filter presentation; behaviour lives in main.js. -->
     <link rel="stylesheet" href="/src/works-filter.css">

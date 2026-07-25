@@ -30,6 +30,15 @@ The `sites` remote (`git.chatgpt-team.site/.../appgprj_…`) is the Sites deploy
 - **DONE (2026-07-25):** copy updates for two new facts Lucas gave: he is a **podcast producer** and an **academic in Computer Science**. Both now appear in the hero eyebrow, About paragraphs, `about__facts`, services and meta description.
 - **DONE (2026-07-25):** SEO layer — `public/robots.txt`, `public/sitemap.xml`, and a **single** JSON-LD `Person` block in `index.html`. Codex and I each added a Person block within minutes of each other; two competing entities split the record for Google, so they are now merged into one. **Only ever one `application/ld+json` on the page** — extend the existing object instead of adding a second script.
 - **DONE (2026-07-25):** social card weight. Codex's card was a 2 MB PNG (`og.png`), above the ~1 MB threshold where WhatsApp/X silently skip the preview. Replaced by `public/og.jpg`, 1200×632, 149 KB, visually identical (the art is dark, so JPEG artefacts don't show); `og:image`, `twitter:image` and the width/height meta now point at it. The 2 MB original is archived in the session scratchpad, not in the repo.
+- **DONE (2026-07-25): non-blocking web fonts — biggest perf win so far.** The Google Fonts `<link rel="stylesheet">` was render-blocking, so nothing painted until a round trip to Google finished. It now preloads and flips `media="print"` → `all` on load (both families already had `font-display:swap`, and `document.fonts` confirms all four faces still resolve). Measured on the production build, mobile at slow-4G + 4× CPU throttle:
+
+  | metric | before | after |
+  |---|---|---|
+  | FCP | 9780 ms | **756 ms** |
+  | LCP | 10560 ms | **1552 ms** (now inside Core Web Vitals "good") |
+  | loader cleared | 16234 ms | **5291 ms** |
+
+  Desktop went 596→244 ms FCP and 900→428 ms LCP. **Do not revert this to a plain stylesheet link.**
 - QA/validation: build checks, viewport tests (note: verified no horizontal overflow at 360/768/1440 via puppeteer; Chrome headless `--window-size` below 500px lies). Mobile pass 2026-07-25: portrait, six cards, filter chips and the project dialog all verified at 360/768.
 
 ### Codex
@@ -48,6 +57,9 @@ The `sites` remote (`git.chatgpt-team.site/.../appgprj_…`) is the Sites deploy
 1. **DONE (Codex, 2026-07-25):** republished Sites version 4 with the consolidated JSON-LD, optimized `og.jpg`, refreshed portrait, crawler files, approved LR mark, and final favicon.
 2. **Make the deployment publicly reachable.** `https://lucas-rickson-neural-violet.growthengineer.chatgpt.site/` answers **401** to anonymous requests (owner-only). While it does, neither Google nor WhatsApp/X can fetch `og.jpg`, so link previews and indexing cannot work at all. Either open it up or tell Lucas which host should serve the public version (Netlify config still exists in `netlify.toml`).
 3. **Decide on `.openai/hosting.json`.** It is tracked and now heads to a *public* GitHub repo. It only holds a Sites `project_id` (an identifier, not a secret), but it is your infrastructure — keep it or gitignore it, your call.
+4. **Release the loader before the 3D scene is ready** (`src/main.js`, yours). `startExperience()` currently awaits `loadThreeRuntime()` **and** `initializeThreeScene()` before it ever calls `completeLoader()`, so the "Construindo o universo" overlay stays up until the 487 KB Three.js chunk has downloaded *and* the whole scene has been built. After my font fix that overlay still holds for **5.3 s** on mobile (slow-4G + 4× CPU) and **3.5 s** on an unthrottled desktop, even though the page itself paints at 756 ms — visitors stare at a loader for seconds after the content is ready. The measurement also shows **19 long tasks totalling 1.9 s** of blocked main thread, which is scene construction.
+
+   Suggested shape: run `initializeInterface()`, then call `completeLoader()` as soon as `window.load` fires, and let the Three.js import and `initializeThreeScene()` resolve afterwards, fading the canvas in when ready. The site already degrades correctly without WebGL (`no-webgl` path), so nothing depends on the scene existing before the content is shown. Re-measure with `scratchpad/vitals.js` after the change if you want the same numbers.
 
 ## Known open items (unclaimed)
 
