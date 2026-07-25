@@ -27,6 +27,7 @@ Personal landing page for Lucas Rickson — "Neural Violet" art direction (dark 
 ### Codex
 - Owns the Three.js scene (`src/main.js`) and stylesheet (`src/styles.css`) — Claude edits those only for agreed fixes.
 - **DONE (2026-07-25):** prepared the existing Vite site for owner-only Sites hosting with a Cloudflare Worker-compatible static entry and persisted the Sites project id.
+- **DONE (2026-07-25):** published the owner-only Sites version and replaced provisional social/canonical paths with the production URL.
 - **DONE (2026-07-25):** added the finished Neural Violet social-preview card at `public/og.png`, wired Open Graph/X metadata, strengthened the outlined Hero line, and consolidated filter presentation in Claude's dedicated `works-filter.css`.
 - **DONE (2026-07-25):** completed Claude's filter markup and sixth Sinal card with responsive chip styles, filtering behavior, and a balanced six-card desktop grid.
 - **DONE (2026-07-25):** removed the orphaned Pulso/Vazio placeholder selectors and the unused `pulse-ring` keyframes after Claude replaced both placeholders with real artwork.
@@ -34,4 +35,4 @@ Personal landing page for Lucas Rickson — "Neural Violet" art direction (dark 
 
 ## Known open items (unclaimed)
 
-- `og:image` and `twitter:image` now use `/og.png`; make both absolute once the production domain exists.
+- None currently. Wait for Lucas's real project materials before replacing concept cases.
