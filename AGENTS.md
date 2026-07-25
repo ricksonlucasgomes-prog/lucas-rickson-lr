@@ -6,6 +6,12 @@ Two AI agents work on this repo simultaneously. **Read this before editing; upda
 
 Personal landing page for Lucas Rickson — "Neural Violet" art direction (dark macro-surrealism, violet `#8b2fd6` / magenta `#e331b8`, rare cyan `#52e8e0` ≤5%, void `#060309`). Stack: Vite 7 + Three.js, deployed on Netlify (`netlify.toml`, build → `dist/`). UI copy in pt-BR; code/comments in English.
 
+## Repository
+
+Lucas's canonical repo (stated 2026-07-25) is **`origin`** → `https://github.com/ricksonlucasgomes-prog/lucas-rickson-lr.git` (public). Use it for all version control from now on.
+
+The `sites` remote (`git.chatgpt-team.site/.../appgprj_…`) is the Sites deploy target, not the source of truth — keep both, push code to `origin`.
+
 ## Ground rules
 
 1. **No wholesale rewrites.** Edit incrementally; the file you remember may have changed since you last read it. Re-read before writing.
@@ -22,7 +28,9 @@ Personal landing page for Lucas Rickson — "Neural Violet" art direction (dark 
 - **DONE (2026-07-25):** added the **Sinal** podcast card (`sinal.webp`) plus its `projectDetails` entry in `main.js`, the category-filter markup, and `src/works-filter.css`. Deleted my duplicate `works-filter.js` once Codex implemented `applyProjectFilter` in `main.js` — **filter behaviour is Codex's, filter styling is mine.**
 - **DONE (2026-07-25):** About-section portrait. `public/assets/lucas-rickson.webp` is a transparent cutout of Lucas's photo (green screen removed locally via chroma-ratio + border flood fill; source kept at `~/Downloads/WhatsApp Image 2026-07-25 at 12.31.11.jpeg`). It replaced `.about__spacer`; all its glow/rim light is CSS in `src/portrait.css` (mine). Keep the image transparent — never bake a background into it.
 - **DONE (2026-07-25):** copy updates for two new facts Lucas gave: he is a **podcast producer** and an **academic in Computer Science**. Both now appear in the hero eyebrow, About paragraphs, `about__facts`, services and meta description.
-- QA/validation: build checks, viewport tests (note: verified no horizontal overflow at 360/768/1440 via puppeteer; Chrome headless `--window-size` below 500px lies).
+- **DONE (2026-07-25):** SEO layer — `public/robots.txt`, `public/sitemap.xml`, and a **single** JSON-LD `Person` block in `index.html`. Codex and I each added a Person block within minutes of each other; two competing entities split the record for Google, so they are now merged into one. **Only ever one `application/ld+json` on the page** — extend the existing object instead of adding a second script.
+- **DONE (2026-07-25):** social card weight. Codex's card was a 2 MB PNG (`og.png`), above the ~1 MB threshold where WhatsApp/X silently skip the preview. Replaced by `public/og.jpg`, 1200×632, 149 KB, visually identical (the art is dark, so JPEG artefacts don't show); `og:image`, `twitter:image` and the width/height meta now point at it. The 2 MB original is archived in the session scratchpad, not in the repo.
+- QA/validation: build checks, viewport tests (note: verified no horizontal overflow at 360/768/1440 via puppeteer; Chrome headless `--window-size` below 500px lies). Mobile pass 2026-07-25: portrait, six cards, filter chips and the project dialog all verified at 360/768.
 
 ### Codex
 - Owns the Three.js scene (`src/main.js`) and stylesheet (`src/styles.css`) — Claude edits those only for agreed fixes.
@@ -33,7 +41,18 @@ Personal landing page for Lucas Rickson — "Neural Violet" art direction (dark 
 - **DONE (2026-07-25):** completed Claude's filter markup and sixth Sinal card with responsive chip styles, filtering behavior, and a balanced six-card desktop grid.
 - **DONE (2026-07-25):** removed the orphaned Pulso/Vazio placeholder selectors and the unused `pulse-ring` keyframes after Claude replaced both placeholders with real artwork.
 - **DONE (2026-07-25):** moved Three.js to a dynamic import so the interface and loader can initialize before the 3D runtime downloads.
+- **DONE (2026-07-25):** finalized the user-approved LR/Neural Violet brand kit in `brand/final/`, preserved the previous favicon in `brand/archive/`, and applied the new LR mark to the header, footer, and favicon without replacing the readable “Lucas Rickson” wordmark.
+
+## → Delegated to Codex (Lucas asked Claude to hand these over)
+
+1. **Republish the Sites deployment.** The live version still serves the build from before this round: duplicated JSON-LD, the 2 MB `og.png` (now **deleted** — a stale deploy will 404 on it), the old portrait, and no `robots.txt`/`sitemap.xml`. You own the publish step; the local build is clean and ready.
+2. **Make the deployment publicly reachable.** `https://lucas-rickson-neural-violet.growthengineer.chatgpt.site/` answers **401** to anonymous requests (owner-only). While it does, neither Google nor WhatsApp/X can fetch `og.jpg`, so link previews and indexing cannot work at all. Either open it up or tell Lucas which host should serve the public version (Netlify config still exists in `netlify.toml`).
+3. **Decide on `.openai/hosting.json`.** It is tracked and now heads to a *public* GitHub repo. It only holds a Sites `project_id` (an identifier, not a secret), but it is your infrastructure — keep it or gitignore it, your call.
 
 ## Known open items (unclaimed)
 
-- None currently. Wait for Lucas's real project materials before replacing concept cases.
+- Wait for Lucas's real project materials before replacing the concept cases.
+
+## Verified state (Claude, 2026-07-25)
+
+Local build is clean and validated: single valid JSON-LD, absolute social URLs, `robots.txt` + `sitemap.xml` present, no horizontal overflow at 360/768/1440, zero console errors, all six filter categories return the right cards, the project dialog opens, `lang=pt-BR`, one `h1`, every image has `alt`, every control has an accessible name, and all body copy sits at 6.77:1 contrast (kickers 8.72:1) — above WCAG AA. `dist/` totals 1.28 MB.

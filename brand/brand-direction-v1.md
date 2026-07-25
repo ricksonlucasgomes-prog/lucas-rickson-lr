@@ -49,3 +49,21 @@ Arquivos:
 
 Não substituir a assinatura atual do site até a aprovação do símbolo. O nome
 “Lucas Rickson” deve continuar legível mesmo quando o monograma for usado.
+
+## Direção aprovada e kit final
+
+A direção `lucas-rickson-logo-v2.png` foi aprovada em 25 de julho de 2026.
+O monograma LR passa a funcionar como assinatura visual ao lado do nome
+“Lucas Rickson”, sem substituir o nome principal.
+
+Arquivos finais:
+
+- `final/lr-symbol-color.png` — símbolo colorido com fundo transparente;
+- `final/lr-symbol-mono.png` — versão branca monocromática e transparente;
+- `final/lr-avatar.png` — avatar quadrado sobre fundo Neural Violet;
+- `../public/logo-mark.png` — versão otimizada usada no cabeçalho e rodapé;
+- `../public/favicon.png` — favicon oficial da marca;
+- `archive/favicon-pre-lr.png` — favicon anterior preservado.
+
+Observação: esta é uma versão raster aprovada para uso digital. Uma reconstrução
+vetorial ainda é recomendada antes de aplicações impressas em grande formato.

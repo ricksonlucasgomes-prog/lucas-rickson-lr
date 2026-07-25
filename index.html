@@ -21,10 +21,10 @@
     >
     <meta
       property="og:image"
-      content="https://lucas-rickson-neural-violet.growthengineer.chatgpt.site/og.png"
+      content="https://lucas-rickson-neural-violet.growthengineer.chatgpt.site/og.jpg"
     >
-    <meta property="og:image:width" content="1729">
-    <meta property="og:image:height" content="910">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="632">
     <meta
       property="og:image:alt"
       content="Lucas Rickson — O impossível ganha forma."
@@ -37,39 +37,18 @@
     >
     <meta
       name="twitter:image"
-      content="https://lucas-rickson-neural-violet.growthengineer.chatgpt.site/og.png"
+      content="https://lucas-rickson-neural-violet.growthengineer.chatgpt.site/og.jpg"
     >
     <title>Lucas Rickson — Experiências digitais em 3D</title>
     <link
       rel="canonical"
       href="https://lucas-rickson-neural-violet.growthengineer.chatgpt.site/"
     >
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Lucas Rickson",
-        "url": "https://lucas-rickson-neural-violet.growthengineer.chatgpt.site/",
-        "sameAs": ["https://instagram.com/olucasrickson"],
-        "jobTitle": "Designer de experiências digitais",
-        "knowsAbout": [
-          "Web design",
-          "Produção de podcasts",
-          "Edição de vídeo",
-          "Motion e VFX",
-          "Tráfego pago",
-          "Inteligência artificial"
-        ],
-        "homeLocation": {
-          "@type": "Place",
-          "name": "Goiás, Brasil"
-        }
-      }
-    </script>
     <link rel="icon" href="/favicon.png" type="image/png">
 
-    <!-- Structured data: lets Google show Lucas as a person with a defined
-         set of services, and surfaces the Computer Science background.
+    <!-- Structured data — SINGLE Person entity for the whole site.
+         Two competing Person blocks would split the entity for Google, so
+         keep this as the only application/ld+json on the page.
          Update `url`/`image` together with the canonical tag above. -->
     <script type="application/ld+json">
       {
@@ -78,19 +57,22 @@
         "name": "Lucas Rickson",
         "url": "https://lucas-rickson-neural-violet.growthengineer.chatgpt.site/",
         "image": "https://lucas-rickson-neural-violet.growthengineer.chatgpt.site/assets/lucas-rickson.webp",
-        "jobTitle": "Web Designer, Produtor de Podcasts e Artista Visual",
+        "jobTitle": "Designer de experiências digitais e produtor de podcasts",
         "description": "Acadêmico de Ciência da Computação que cria sites, podcasts, vídeo, motion, VFX e campanhas de tráfego pago com apoio de inteligência artificial.",
         "knowsAbout": [
           "Ciência da Computação",
-          "Web Design",
-          "Produção de Podcast",
-          "Edição de Vídeo",
-          "Motion Design",
-          "VFX",
-          "Tráfego Pago",
+          "Web design",
+          "Produção de podcasts",
+          "Edição de vídeo",
+          "Motion e VFX",
+          "Tráfego pago",
           "Meta Ads",
-          "Inteligência Artificial Generativa"
+          "Inteligência artificial generativa"
         ],
+        "homeLocation": {
+          "@type": "Place",
+          "name": "Goiás, Brasil"
+        },
         "address": {
           "@type": "PostalAddress",
           "addressRegion": "GO",
@@ -134,7 +116,14 @@
 
     <header class="site-header" id="site-header">
       <a class="brand" href="#inicio" aria-label="Lucas Rickson — início">
-        <span class="brand__signal" aria-hidden="true"></span>
+        <img
+          class="brand__mark"
+          src="/logo-mark.png"
+          alt=""
+          width="32"
+          height="32"
+          aria-hidden="true"
+        >
         <span>Lucas Rickson</span>
       </a>
 
@@ -529,7 +518,14 @@
 
     <footer class="site-footer">
       <a class="brand" href="#inicio">
-        <span class="brand__signal" aria-hidden="true"></span>
+        <img
+          class="brand__mark"
+          src="/logo-mark.png"
+          alt=""
+          width="32"
+          height="32"
+          aria-hidden="true"
+        >
         <span>Lucas Rickson</span>
       </a>
       <p>Sites · Podcasts · Vídeo &amp; VFX · Meta Ads</p>

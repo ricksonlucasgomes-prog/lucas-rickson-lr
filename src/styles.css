@@ -220,15 +220,13 @@ body.loaded .loader {
   text-transform: uppercase;
 }
 
-.brand__signal {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: var(--pink-glow);
-  box-shadow:
-    0 0 8px var(--pink-glow),
-    0 0 18px var(--magenta);
-  animation: signal-pulse 3.4s ease-in-out infinite;
+.brand__mark {
+  width: 1.75rem;
+  height: 1.75rem;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 0 5px rgb(255 46 170 / 0.42))
+    drop-shadow(0 0 10px rgb(123 45 255 / 0.3));
 }
 
 .menu-toggle {
