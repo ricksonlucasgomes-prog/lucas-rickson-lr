@@ -54,12 +54,10 @@ The `sites` remote (`git.chatgpt-team.site/.../appgprj_…`) is the Sites deploy
 
 ## → Delegated to Codex (Lucas asked Claude to hand these over)
 
-1. **DONE (Codex, 2026-07-25):** republished Sites version 4 with the consolidated JSON-LD, optimized `og.jpg`, refreshed portrait, crawler files, approved LR mark, and final favicon.
+1. **DONE (Codex, 2026-07-25):** republished Sites with the consolidated JSON-LD, optimized `og.jpg`, refreshed portrait, crawler files, approved LR mark, and final favicon.
 2. **Make the deployment publicly reachable.** `https://lucas-rickson-neural-violet.growthengineer.chatgpt.site/` answers **401** to anonymous requests (owner-only). While it does, neither Google nor WhatsApp/X can fetch `og.jpg`, so link previews and indexing cannot work at all. Either open it up or tell Lucas which host should serve the public version (Netlify config still exists in `netlify.toml`).
-3. **Decide on `.openai/hosting.json`.** It is tracked and now heads to a *public* GitHub repo. It only holds a Sites `project_id` (an identifier, not a secret), but it is your infrastructure — keep it or gitignore it, your call.
-4. **Release the loader before the 3D scene is ready** (`src/main.js`, yours). `startExperience()` currently awaits `loadThreeRuntime()` **and** `initializeThreeScene()` before it ever calls `completeLoader()`, so the "Construindo o universo" overlay stays up until the 487 KB Three.js chunk has downloaded *and* the whole scene has been built. After my font fix that overlay still holds for **5.3 s** on mobile (slow-4G + 4× CPU) and **3.5 s** on an unthrottled desktop, even though the page itself paints at 756 ms — visitors stare at a loader for seconds after the content is ready. The measurement also shows **19 long tasks totalling 1.9 s** of blocked main thread, which is scene construction.
-
-   Suggested shape: run `initializeInterface()`, then call `completeLoader()` as soon as `window.load` fires, and let the Three.js import and `initializeThreeScene()` resolve afterwards, fading the canvas in when ready. The site already degrades correctly without WebGL (`no-webgl` path), so nothing depends on the scene existing before the content is shown. Re-measure with `scratchpad/vitals.js` after the change if you want the same numbers.
+3. **DONE (Codex, 2026-07-25):** keep `.openai/hosting.json` tracked. It contains only the non-secret Sites project identifier and ensures future agents reuse the existing site instead of accidentally creating another one.
+4. **DONE (Codex, 2026-07-25): release the loader before the 3D scene is ready.** `startExperience()` now initializes the interface, releases the loader at `window.load`, and starts the Three.js import and scene construction after the loader fade. The canvas fades in only after the scene is ready, while the existing `no-webgl` fallback remains available. Production build passes; Claude's throttled vitals script can be rerun later to quantify the improvement.
 
 ## Known open items (unclaimed)
 
@@ -68,3 +66,7 @@ The `sites` remote (`git.chatgpt-team.site/.../appgprj_…`) is the Sites deploy
 ## Verified state (Claude, 2026-07-25)
 
 Local build is clean and validated: single valid JSON-LD, absolute social URLs, `robots.txt` + `sitemap.xml` present, no horizontal overflow at 360/768/1440, zero console errors, all six filter categories return the right cards, the project dialog opens, `lang=pt-BR`, one `h1`, every image has `alt`, every control has an accessible name, and all body copy sits at 6.77:1 contrast (kickers 8.72:1) — above WCAG AA. `dist/` totals 1.28 MB.
+
+Performance on the production build after the font fix — desktop FCP 244 ms / LCP 428 ms, mobile (slow-4G, 4× CPU) FCP 756 ms / LCP 1552 ms, CLS 0.056, 395 KB over 11 requests. The one number still outside target is how long the loader overlay stays up (item 4 above).
+
+Repeatable QA scripts live in the session scratchpad (`vitals.js`, `a11y.js`, `qa-mobile.js`, `check-seo.js`, `check-fonts.js`) — they run against `npm run preview` on :4173.

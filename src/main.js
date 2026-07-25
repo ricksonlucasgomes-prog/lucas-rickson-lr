@@ -814,23 +814,36 @@ function completeLoader() {
   }, 220);
 }
 
-async function startExperience() {
-  initializeInterface();
-
+async function startThreeExperience() {
   try {
     THREE = await loadThreeRuntime();
     initializeThreeScene();
+    document.documentElement.classList.add("webgl-ready");
   } catch (error) {
     console.warn("WebGL scene unavailable; using the visual fallback.", error);
-    document.documentElement.classList.add("no-webgl");
+    document.documentElement.classList.add("no-webgl", "webgl-ready");
     statusLabel.lastChild.textContent = " Modo visual compatível";
-  }
-
-  if (document.readyState === "complete") {
-    completeLoader();
-  } else {
-    window.addEventListener("load", completeLoader, { once: true });
   }
 }
 
-void startExperience();
+function startExperience() {
+  initializeInterface();
+
+  const revealInterface = () => {
+    completeLoader();
+
+    // Let the loader finish fading before the heavier 3D import and scene
+    // construction begin. The portfolio remains fully usable without WebGL.
+    window.setTimeout(() => {
+      void startThreeExperience();
+    }, 700);
+  };
+
+  if (document.readyState === "complete") {
+    revealInterface();
+  } else {
+    window.addEventListener("load", revealInterface, { once: true });
+  }
+}
+
+startExperience();

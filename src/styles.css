@@ -84,6 +84,12 @@ img {
   inset: 0;
   overflow: hidden;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 800ms ease;
+}
+
+.webgl-ready #webgl-stage {
+  opacity: 1;
 }
 
 #webgl-stage canvas {
