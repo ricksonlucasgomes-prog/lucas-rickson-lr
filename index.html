@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#060309">
+    <meta
+      name="description"
+      content="Lucas Rickson, acadêmico de Ciência da Computação, cria experiências digitais imersivas: sites, produção de podcasts, vídeo, motion, VFX e tráfego pago com inteligência artificial."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:title" content="Lucas Rickson — Designer de experiências digitais">
+    <meta
+      property="og:description"
+      content="Sites, podcasts, vídeo e tráfego pago. Design que captura o olhar e transforma atenção em resultado."
+    >
+    <meta property="og:image" content="/og.png">
+    <meta property="og:image:width" content="1729">
+    <meta property="og:image:height" content="910">
+    <meta
+      property="og:image:alt"
+      content="Lucas Rickson — O impossível ganha forma."
+    >
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Lucas Rickson — Designer de experiências digitais">
+    <meta
+      name="twitter:description"
+      content="Sites, podcasts, vídeo e tráfego pago. Design que captura o olhar e transforma atenção em resultado."
+    >
+    <meta name="twitter:image" content="/og.png">
+    <title>Lucas Rickson — Experiências digitais em 3D</title>
+    <link rel="icon" href="/favicon.png" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="/src/styles.css">
+    <!-- Works category filter presentation; behaviour lives in main.js. -->
+    <link rel="stylesheet" href="/src/works-filter.css">
+    <link rel="stylesheet" href="/src/portrait.css">
+  </head>
+
+  <body>
+    <a class="skip-link" href="#content">Ir para o conteúdo</a>
+
+    <div class="loader" id="loader" aria-live="polite">
+      <div class="loader__orb" aria-hidden="true"></div>
+      <p>Construindo o universo</p>
+      <span id="loader-value">0%</span>
+    </div>
+
+    <div id="webgl-stage" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+    <header class="site-header" id="site-header">
+      <a class="brand" href="#inicio" aria-label="Lucas Rickson — início">
+        <span class="brand__signal" aria-hidden="true"></span>
+        <span>Lucas Rickson</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="main-nav"
+      >
+        Menu
+      </button>
+
+      <nav class="main-nav" id="main-nav" aria-label="Navegação principal">
+        <a href="#trabalhos">Trabalhos</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#sobre">Sobre</a>
+        <a
+          class="nav-contact"
+          href="https://wa.me/5562994349416?text=Ol%C3%A1%2C%20Lucas!%20Quero%20criar%20um%20projeto."
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Iniciar projeto
+        </a>
+      </nav>
+    </header>
+
+    <main id="content">
+      <section class="hero scene-section" id="inicio" data-scene="0" aria-labelledby="hero-title">
+        <div class="hero__content">
+          <p class="eyebrow reveal">
+            <span aria-hidden="true"></span>
+            Ciência da Computação · Portfólio interativo 3D
+          </p>
+          <h1 class="hero__title reveal" id="hero-title">
+            O impossível
+            <span>ganha forma.</span>
+          </h1>
+          <p class="hero__copy reveal">
+            Sites, vídeo, podcast e tráfego pago construídos com inteligência
+            artificial e movimento — experiências que prendem o olhar e movem
+            pessoas.
+          </p>
+          <div class="hero__actions reveal">
+            <a class="orb-button" href="#trabalhos">
+              Explorar universo
+              <span aria-hidden="true">↘</span>
+            </a>
+            <span class="webgl-status" id="webgl-status">
+              <i aria-hidden="true"></i>
+              Ambiente 3D ativo
+            </span>
+          </div>
+        </div>
+
+        <div class="scroll-cue" aria-hidden="true">
+          <span>Role para atravessar</span>
+          <i></i>
+        </div>
+      </section>
+
+      <section
+        class="works scene-section section-shell"
+        id="trabalhos"
+        data-scene="1"
+        aria-labelledby="works-title"
+      >
+        <div class="section-heading reveal">
+          <p class="section-kicker">01 / Trabalhos selecionados</p>
+          <h2 id="works-title">Ideias que viraram <span>universos.</span></h2>
+          <p>
+            Sites, campanhas, podcasts e filmes. Cada projeto combina direção
+            visual, tecnologia e estratégia. Filtre por área ou abra um
+            projeto para ver os detalhes.
+          </p>
+        </div>
+
+        <!-- Category filter: each chip matches project cards by data-category.
+             Add a new area by adding a chip here plus cards with the same value. -->
+        <div class="works-filter reveal" role="group" aria-label="Filtrar trabalhos por área">
+          <button class="filter-chip is-active" type="button" data-filter="all" aria-pressed="true">
+            Todos
+          </button>
+          <button class="filter-chip" type="button" data-filter="sites" aria-pressed="false">
+            Sites
+          </button>
+          <button class="filter-chip" type="button" data-filter="trafego" aria-pressed="false">
+            Tráfego pago
+          </button>
+          <button class="filter-chip" type="button" data-filter="podcast" aria-pressed="false">
+            Podcasts
+          </button>
+          <button class="filter-chip" type="button" data-filter="video" aria-pressed="false">
+            Vídeo &amp; VFX
+          </button>
+          <button class="filter-chip" type="button" data-filter="design" aria-pressed="false">
+            Design &amp; IA
+          </button>
+        </div>
+
+        <p class="works-empty" id="works-empty" hidden>
+          Ainda não há projetos publicados nesta área. Em breve.
+        </p>
+
+        <div class="projects-grid" id="projects-grid">
+          <button
+            class="project-card project-card--wide reveal"
+            type="button"
+            data-project="iris"
+            data-category="design"
+          >
+            <span class="project-card__media">
+              <img
+                src="/assets/works/iris.webp"
+                alt="Íris violeta luminosa em macro"
+                width="1536"
+                height="1024"
+                loading="lazy"
+              >
+            </span>
+            <span class="project-card__meta">
+              <span>Identidade visual · IA</span>
+              <strong>Íris</strong>
+            </span>
+            <span class="project-card__open" aria-hidden="true">↗</span>
+          </button>
+
+          <button
+            class="project-card reveal"
+            type="button"
+            data-project="fragmento"
+            data-category="video"
+          >
+            <span class="project-card__media">
+              <img
+                src="/assets/works/fragmento.webp"
+                alt="Escultura de cerâmica fragmentada com filamentos neurais"
+                width="1536"
+                height="1024"
+                loading="lazy"
+              >
+            </span>
+            <span class="project-card__meta">
+              <span>Motion · Direção de arte</span>
+              <strong>Fragmento</strong>
+            </span>
+            <span class="project-card__open" aria-hidden="true">↗</span>
+          </button>
+
+          <button
+            class="project-card reveal"
+            type="button"
+            data-project="orbita"
+            data-category="sites"
+          >
+            <span class="project-card__media">
+              <img
+                src="/assets/works/orbita.webp"
+                alt="Astronauta segurando uma esfera violeta no espaço"
+                width="1536"
+                height="1024"
+                loading="lazy"
+              >
+            </span>
+            <span class="project-card__meta">
+              <span>Web design · Experiência 3D</span>
+              <strong>Órbita</strong>
+            </span>
+            <span class="project-card__open" aria-hidden="true">↗</span>
+          </button>
+
+          <button
+            class="project-card reveal"
+            type="button"
+            data-project="pulso"
+            data-category="trafego"
+          >
+            <span class="project-card__media">
+              <img
+                src="/assets/works/pulso.webp"
+                alt="Anéis concêntricos de luz violeta pulsando na escuridão"
+                width="1264"
+                height="848"
+                loading="lazy"
+              >
+            </span>
+            <span class="project-card__meta">
+              <span>Meta Ads · Criativos</span>
+              <strong>Pulso</strong>
+            </span>
+            <span class="project-card__open" aria-hidden="true">↗</span>
+          </button>
+
+          <button
+            class="project-card reveal"
+            type="button"
+            data-project="sinal"
+            data-category="podcast"
+          >
+            <span class="project-card__media">
+              <img
+                src="/assets/works/sinal.webp"
+                alt="Microfone de estúdio iluminado por neon violeta com ondas sonoras luminosas"
+                width="1264"
+                height="848"
+                loading="lazy"
+              >
+            </span>
+            <span class="project-card__meta">
+              <span>Podcast · Produção e pós</span>
+              <strong>Sinal</strong>
+            </span>
+            <span class="project-card__open" aria-hidden="true">↗</span>
+          </button>
+
+          <button
+            class="project-card project-card--wide reveal"
+            type="button"
+            data-project="vazio"
+            data-category="video"
+          >
+            <span class="project-card__media">
+              <img
+                src="/assets/works/vazio.webp"
+                alt="Astronauta solitário segurando uma esfera luminosa entre filamentos ciano"
+                width="1264"
+                height="848"
+                loading="lazy"
+              >
+            </span>
+            <span class="project-card__meta">
+              <span>Filme de marca · IA generativa</span>
+              <strong>Vazio</strong>
+            </span>
+            <span class="project-card__open" aria-hidden="true">↗</span>
+          </button>
+        </div>
+      </section>
+
+      <section
+        class="services scene-section section-shell"
+        id="servicos"
+        data-scene="2"
+        aria-labelledby="services-title"
+      >
+        <div class="services__intro reveal">
+          <p class="section-kicker">02 / Capacidades</p>
+          <h2 id="services-title">Do primeiro impacto ao <span>resultado.</span></h2>
+        </div>
+
+        <div class="services__list">
+          <article class="service reveal">
+            <span class="service__number">01</span>
+            <div>
+              <h3>Web Design</h3>
+              <p>
+                Sites imersivos, landing pages e experiências 3D que tornam
+                sua marca impossível de ignorar.
+              </p>
+            </div>
+            <span class="service__tech">UX · UI · THREE.JS</span>
+          </article>
+
+          <article class="service reveal">
+            <span class="service__number">02</span>
+            <div>
+              <h3>Vídeo, Motion &amp; VFX</h3>
+              <p>
+                Edição, motion e efeitos visuais com IA generativa, After
+                Effects e Premiere — filmes com linguagem própria e ritmo
+                de campanha.
+              </p>
+            </div>
+            <span class="service__tech">IA · AE · PREMIERE · VFX</span>
+          </article>
+
+          <article class="service reveal">
+            <span class="service__number">03</span>
+            <div>
+              <h3>Produção de Podcast</h3>
+              <p>
+                Do estúdio ao corte final: captação, edição, identidade
+                visual e cortes verticais prontos para alimentar suas redes
+                toda semana.
+              </p>
+            </div>
+            <span class="service__tech">GRAVAÇÃO · EDIÇÃO · CORTES</span>
+          </article>
+
+          <article class="service reveal">
+            <span class="service__number">04</span>
+            <div>
+              <h3>Tráfego Pago</h3>
+              <p>
+                Criativo e dados trabalhando juntos em campanhas Meta Ads
+                desenhadas para transformar atenção em receita.
+              </p>
+            </div>
+            <span class="service__tech">META ADS · DADOS</span>
+          </article>
+        </div>
+      </section>
+
+      <section
+        class="about scene-section section-shell"
+        id="sobre"
+        data-scene="3"
+        aria-labelledby="about-title"
+      >
+        <!-- Portrait sits in the column the 3D scene used to leave empty.
+             The image is a transparent cutout, so the glow behind it comes
+             from .portrait-frame::before in portrait.css. -->
+        <figure class="portrait-frame">
+          <img
+            src="/assets/lucas-rickson.webp"
+            alt="Retrato de Lucas Rickson"
+            width="640"
+            height="641"
+            loading="lazy"
+          >
+        </figure>
+        <div class="about__content">
+          <p class="section-kicker reveal">03 / Sobre mim</p>
+          <h2 class="reveal" id="about-title">
+            Explorando o que ninguém <span>viu ainda.</span>
+          </h2>
+          <p class="about__lead reveal">
+            Sou Lucas Rickson — web designer, produtor de podcasts e artista
+            visual movido por inteligência artificial, movimento e curiosidade.
+          </p>
+          <p class="reveal">
+            Como um astronauta carregando sua própria fonte de luz, entro no
+            desconhecido para voltar com imagens, experiências e estratégias
+            que fazem marcas avançarem.
+          </p>
+          <p class="reveal">
+            Sou acadêmico de Ciência da Computação, e é essa base técnica que
+            sustenta o resto: entender o código por trás da interface faz cada
+            decisão visual ser também uma decisão de performance.
+          </p>
+
+          <dl class="about__facts reveal">
+            <div>
+              <dt>Formação</dt>
+              <dd>Ciência da Computação</dd>
+            </div>
+            <div>
+              <dt>Foco</dt>
+              <dd>Experiências digitais</dd>
+            </div>
+            <div>
+              <dt>Base</dt>
+              <dd>Goiás · Brasil</dd>
+            </div>
+            <div>
+              <dt>Visão</dt>
+              <dd>Humano + IA</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section
+        class="contact scene-section"
+        id="contato"
+        data-scene="4"
+        aria-labelledby="contact-title"
+      >
+        <div class="contact__halo" aria-hidden="true"></div>
+        <div class="contact__content">
+          <p class="section-kicker reveal">04 / Próxima missão</p>
+          <h2 class="reveal" id="contact-title">
+            Vamos criar algo que ainda <span>não existe?</span>
+          </h2>
+          <p class="reveal">
+            Conte sua ideia. Eu transformo o primeiro sinal em uma experiência
+            visual pronta para ganhar o mundo.
+          </p>
+          <a
+            class="orb-button orb-button--large reveal"
+            href="https://wa.me/5562994349416?text=Ol%C3%A1%2C%20Lucas!%20Quero%20criar%20um%20projeto."
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Falar no WhatsApp
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand" href="#inicio">
+        <span class="brand__signal" aria-hidden="true"></span>
+        <span>Lucas Rickson</span>
+      </a>
+      <p>Sites · Podcasts · Vídeo &amp; VFX · Meta Ads</p>
+      <nav aria-label="Redes sociais">
+        <a
+          href="https://instagram.com/olucasrickson"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instagram
+        </a>
+        <a
+          href="https://wa.me/5562994349416"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          WhatsApp
+        </a>
+      </nav>
+      <p>© 2026 · Agência Fennix</p>
+    </footer>
+
+    <dialog class="project-dialog" id="project-dialog">
+      <button class="dialog-close" id="dialog-close" type="button" aria-label="Fechar projeto">×</button>
+      <p class="section-kicker" id="dialog-category"></p>
+      <h2 id="dialog-title"></h2>
+      <p id="dialog-description"></p>
+      <a
+        href="https://wa.me/5562994349416?text=Ol%C3%A1%2C%20Lucas!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar."
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Criar algo nessa direção ↗
+      </a>
+    </dialog>
+
+    <noscript>
+      <style>
+        .loader,
+        #webgl-stage {
+          display: none;
+        }
+
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      </style>
+      <div class="noscript-message">
+        Ative o JavaScript para visualizar o ambiente 3D. Todo o conteúdo
+        principal continua disponível nesta página.
+      </div>
+    </noscript>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

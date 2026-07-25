@@ -1,0 +1,73 @@
+/* About-section portrait — presentation only, kept out of styles.css
+   so Claude and Codex never edit the same file for this feature.
+   The source image is a transparent PNG/WebP cutout: all the light around
+   the subject is CSS, matching the "glowing from within the dark" rule. */
+
+.portrait-frame {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  margin: 0 0 2.5rem;
+}
+
+/* Iris-style light source behind the subject. */
+.portrait-frame::before {
+  position: absolute;
+  z-index: -1;
+  top: 46%;
+  left: 50%;
+  width: min(90%, 26rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  content: "";
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle,
+    rgb(139 47 214 / 0.55) 0%,
+    rgb(227 49 184 / 0.28) 34%,
+    rgb(139 47 214 / 0.08) 55%,
+    transparent 72%);
+  filter: blur(6px);
+}
+
+.portrait-frame img {
+  position: relative;
+  width: min(100%, 24rem);
+  height: auto;
+  /* Violet rim light so the cutout reads as lit by the scene behind it. */
+  filter:
+    drop-shadow(0 0 1.4rem rgb(139 47 214 / 0.45))
+    drop-shadow(0 0.8rem 2.4rem rgb(0 0 0 / 0.55))
+    contrast(1.04)
+    saturate(1.05);
+}
+
+/* Fade the bottom edge into the page so the crop never reads as a hard cut. */
+.portrait-frame::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 22%;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(180deg, transparent, var(--void, #060309) 92%);
+}
+
+@media (min-width: 64rem) {
+  .portrait-frame {
+    margin: 0;
+  }
+
+  .portrait-frame img {
+    width: min(100%, 27rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portrait-frame img {
+    filter:
+      drop-shadow(0 0 1.4rem rgb(139 47 214 / 0.45))
+      drop-shadow(0 0.8rem 2.4rem rgb(0 0 0 / 0.55));
+  }
+}
