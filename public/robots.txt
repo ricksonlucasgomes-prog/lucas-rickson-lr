@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lucas-rickson-neural-violet.growthengineer.chatgpt.site/sitemap.xml
