@@ -387,16 +387,27 @@ body.loaded .loader {
 .about__content h2 span,
 .contact h2 span {
   display: block;
-  color: transparent;
-  -webkit-text-stroke: 1px rgb(237 230 245 / 0.55);
 }
 
-.hero__title span {
-  color: rgb(237 230 245 / 0.1);
-  -webkit-text-stroke-color: rgb(237 230 245 / 0.72);
-  text-shadow:
-    0 0 2.4rem rgb(46 66 87 / 0.22),
-    0 0 0.7rem rgb(5 7 10 / 0.72);
+/* The outlined-word treatment relies on the non-standard text-stroke;
+   without the guard, engines that skip it would render invisible copy. */
+@supports (-webkit-text-stroke: 1px currentColor) {
+  .hero__title span,
+  .section-heading h2 span,
+  .services__intro h2 span,
+  .about__content h2 span,
+  .contact h2 span {
+    color: transparent;
+    -webkit-text-stroke: 1px rgb(232 237 242 / 0.55);
+  }
+
+  .hero__title span {
+    color: rgb(232 237 242 / 0.1);
+    -webkit-text-stroke-color: rgb(232 237 242 / 0.72);
+    text-shadow:
+      0 0 2.4rem rgb(46 66 87 / 0.22),
+      0 0 0.7rem rgb(5 7 10 / 0.72);
+  }
 }
 
 .hero__copy {
@@ -951,11 +962,6 @@ body.loaded .loader {
   50% { transform: scale(1.08); filter: brightness(1.2); }
 }
 
-@keyframes signal-pulse {
-  0%, 100% { opacity: 0.6; transform: scale(0.86); }
-  50% { opacity: 1; transform: scale(1.08); }
-}
-
 @keyframes orb-breathe {
   0%, 100% {
     box-shadow:
@@ -995,6 +1001,11 @@ body.loaded .loader {
 
   .project-card--wide .project-card__media {
     aspect-ratio: 16 / 7;
+  }
+
+  /* Wide cards drop to a single column when filtered; keep media uniform. */
+  .projects-grid.is-filtered .project-card__media {
+    aspect-ratio: 4 / 3;
   }
 
   .about__facts {
@@ -1142,6 +1153,13 @@ body.loaded .loader {
 
   .project-card:nth-child(6) .project-card__media {
     aspect-ratio: 16 / 8;
+  }
+
+  /* Placed after the per-position ratios (same specificity — order wins):
+     those are tuned for the full mosaic; a filtered 2-column grid would
+     otherwise pair 3/4 next to 16/8. */
+  .projects-grid.is-filtered .project-card__media {
+    aspect-ratio: 4 / 3;
   }
 }
 
