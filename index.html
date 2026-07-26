@@ -40,12 +40,17 @@
       name="twitter:image"
       content="https://lucas-rickson-neural-violet.growthengineer.chatgpt.site/og.jpg"
     >
-    <title>Lucas Rickson — Experiências digitais em 3D</title>
+    <meta
+      name="twitter:image:alt"
+      content="Lucas Rickson — O impossível ganha forma."
+    >
+    <title>Lucas Rickson — Designer de experiências digitais</title>
     <link
       rel="canonical"
       href="https://lucas-rickson-neural-violet.growthengineer.chatgpt.site/"
     >
     <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/logo-mark.png">
 
     <!-- Structured data — SINGLE Person entity for the whole site.
          Two competing Person blocks would split the entity for Google, so
@@ -120,6 +125,8 @@
     <link rel="stylesheet" href="/src/portrait.css">
     <!-- Process section presentation; markup lives in the #processo section. -->
     <link rel="stylesheet" href="/src/process.css">
+    <!-- Cinematic control-panel treatment inspired by Lucas's visual reference. -->
+    <link rel="stylesheet" href="/src/reference-direction.css">
   </head>
 
   <body>
@@ -128,7 +135,8 @@
     <div class="loader" id="loader" aria-live="polite">
       <div class="loader__orb" aria-hidden="true"></div>
       <p>Construindo o universo</p>
-      <span id="loader-value">0%</span>
+      <!-- aria-hidden: the 90 ms ticker would flood the aria-live region. -->
+      <span id="loader-value" aria-hidden="true">0%</span>
     </div>
 
     <div id="webgl-stage" aria-hidden="true"></div>
@@ -175,31 +183,64 @@
       </nav>
     </header>
 
-    <main id="content">
+    <main id="content" tabindex="-1">
       <section class="hero scene-section" id="inicio" data-scene="0" aria-labelledby="hero-title">
-        <div class="hero__content">
-          <p class="eyebrow reveal">
-            <span aria-hidden="true"></span>
-            Ciência da Computação · Portfólio interativo 3D
-          </p>
-          <h1 class="hero__title reveal" id="hero-title">
-            O impossível
-            <span>ganha forma.</span>
-          </h1>
-          <p class="hero__copy reveal">
-            Sites, vídeo, podcast e tráfego pago construídos com inteligência
-            artificial e movimento — experiências que prendem o olhar e movem
-            pessoas.
-          </p>
-          <div class="hero__actions reveal">
-            <a class="orb-button" href="#trabalhos">
-              Explorar universo
-              <span aria-hidden="true">↘</span>
-            </a>
-            <span class="webgl-status" id="webgl-status">
-              <i aria-hidden="true"></i>
-              Ambiente 3D ativo
-            </span>
+        <div class="hero__interface">
+          <div class="hero__hud-top reveal" aria-hidden="true">
+            <span>LR / Creative systems</span>
+            <span>Red Dark — 2026</span>
+          </div>
+
+          <div class="hero__hud-rail reveal" aria-hidden="true">
+            <span>01</span>
+            <span>02</span>
+            <span>03</span>
+          </div>
+
+          <div class="hero__content">
+            <p class="eyebrow reveal">
+              <span aria-hidden="true"></span>
+              Ciência da Computação · Direção criativa
+            </p>
+            <h1 class="hero__title reveal" id="hero-title">
+              O impossível
+              <span>ganha forma.</span>
+            </h1>
+            <p class="hero__copy reveal">
+              Sites, vídeo, podcast e tráfego pago construídos com inteligência
+              artificial e movimento — experiências que prendem o olhar e movem
+              pessoas.
+            </p>
+            <div class="hero__actions reveal">
+              <a class="orb-button" href="#trabalhos">
+                Explorar universo
+                <span aria-hidden="true">↘</span>
+              </a>
+              <span class="webgl-status" id="webgl-status">
+                <i aria-hidden="true"></i>
+                Sistema criativo ativo
+              </span>
+            </div>
+          </div>
+
+          <dl class="hero__metrics reveal">
+            <div>
+              <dt>Criação</dt>
+              <dd>Estratégia + visual</dd>
+            </div>
+            <div>
+              <dt>Produção</dt>
+              <dd>Digital ponta a ponta</dd>
+            </div>
+            <div>
+              <dt>Base</dt>
+              <dd>Goiás · Brasil</dd>
+            </div>
+          </dl>
+
+          <div class="hero__corner-mark" aria-hidden="true">
+            <span></span>
+            LR
           </div>
         </div>
 
@@ -248,7 +289,7 @@
           </button>
         </div>
 
-        <p class="works-empty" id="works-empty" hidden>
+        <p class="works-empty" id="works-empty" role="status" hidden>
           Ainda não há projetos publicados nesta área. Em breve.
         </p>
 
@@ -474,7 +515,8 @@
           </p>
         </div>
 
-        <ol class="process__steps">
+        <!-- role="list" restores list semantics removed by list-style: none. -->
+        <ol class="process__steps" role="list">
           <li class="process-step reveal">
             <span class="process-step__number" aria-hidden="true">01</span>
             <h3>Descoberta</h3>

@@ -235,7 +235,21 @@ function initializeInterface() {
 
   dialogClose.addEventListener("click", () => dialog.close());
   dialog.addEventListener("click", (event) => {
-    if (event.target === dialog) dialog.close();
+    // Only clicks on the ::backdrop should close: event.target === dialog is
+    // also true for clicks on the dialog's own padding, so bound-check.
+    const bounds = dialog.getBoundingClientRect();
+    const outside =
+      event.clientX < bounds.left ||
+      event.clientX > bounds.right ||
+      event.clientY < bounds.top ||
+      event.clientY > bounds.bottom;
+    if (event.target === dialog && outside) dialog.close();
+  });
+
+  // Leaving the mobile breakpoint hides .menu-toggle; if the menu was open,
+  // body would stay scroll-locked with no control to undo it.
+  window.matchMedia("(min-width: 48rem)").addEventListener("change", (event) => {
+    if (event.matches) closeMenu();
   });
 
   const revealObserver = new IntersectionObserver(

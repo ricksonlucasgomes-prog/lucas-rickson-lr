@@ -1,9 +1,11 @@
+/* Palette: "Red Dark" — oxblood, crimson and a restrained warm signal.
+   Var names remain as compatibility aliases for the existing scene styles. */
 :root {
   --void: #080203;
   --violet: #7a1018;
   --magenta: #d52b3f;
   --cyan: #ffb36b;
-  --pink-glow: #ff6b78;
+  --pink-glow: #d6e4f0;
   --text: #f5e9ea;
   --text-dim: #b39a9e;
   --line: rgb(211 74 87 / 0.22);
@@ -24,6 +26,8 @@
 html {
   color-scheme: dark;
   scroll-behavior: smooth;
+  /* Anchor jumps must clear the fixed .site-header. */
+  scroll-padding-top: 5rem;
   scrollbar-color: var(--violet) var(--void);
 }
 
@@ -119,7 +123,7 @@ img {
 .vignette {
   z-index: 89;
   background:
-    radial-gradient(circle at center, transparent 35%, rgb(6 3 9 / 0.24) 68%, rgb(2 1 4 / 0.9) 120%),
+    radial-gradient(circle at center, transparent 35%, rgb(5 7 10 / 0.24) 68%, rgb(2 3 5 / 0.9) 120%),
     linear-gradient(90deg, rgb(0 0 0 / 0.22), transparent 15% 85%, rgb(0 0 0 / 0.22));
 }
 
@@ -208,7 +212,7 @@ body.loaded .loader {
   padding-top: 0.8rem;
   padding-bottom: 0.8rem;
   border-color: var(--line);
-  background: rgb(6 3 9 / 0.72);
+  background: rgb(5 7 10 / 0.72);
   backdrop-filter: blur(18px);
 }
 
@@ -262,7 +266,7 @@ body.loaded .loader {
   justify-content: center;
   background:
     radial-gradient(circle at 50% 40%, rgb(122 16 24 / 0.26), transparent 40%),
-    rgb(6 3 9 / 0.96);
+    rgb(5 7 10 / 0.96);
   opacity: 0;
   transition:
     opacity 260ms ease,
@@ -326,8 +330,8 @@ body.loaded .loader {
   inset: 0;
   content: "";
   background:
-    linear-gradient(180deg, rgb(6 3 9 / 0.08) 0%, transparent 52%, rgb(6 3 9 / 0.72) 100%),
-    radial-gradient(circle at 50% 46%, transparent 0 24%, rgb(6 3 9 / 0.3) 62%, rgb(6 3 9 / 0.76) 100%);
+    linear-gradient(180deg, rgb(5 7 10 / 0.08) 0%, transparent 52%, rgb(5 7 10 / 0.72) 100%),
+    radial-gradient(circle at 50% 46%, transparent 0 24%, rgb(5 7 10 / 0.3) 62%, rgb(5 7 10 / 0.76) 100%);
 }
 
 .hero__content {
@@ -391,7 +395,7 @@ body.loaded .loader {
   -webkit-text-stroke-color: rgb(237 230 245 / 0.72);
   text-shadow:
     0 0 2.4rem rgb(122 16 24 / 0.22),
-    0 0 0.7rem rgb(6 3 9 / 0.72);
+    0 0 0.7rem rgb(5 7 10 / 0.72);
 }
 
 .hero__copy {
@@ -533,7 +537,7 @@ body.loaded .loader {
   z-index: -2;
   inset: 0;
   content: "";
-  background: linear-gradient(180deg, rgb(6 3 9 / 0.18), rgb(6 3 9 / 0.7) 20%, rgb(6 3 9 / 0.76) 80%, transparent);
+  background: linear-gradient(180deg, rgb(5 7 10 / 0.18), rgb(5 7 10 / 0.7) 20%, rgb(5 7 10 / 0.76) 80%, transparent);
 }
 
 .projects-grid {
@@ -610,7 +614,7 @@ body.loaded .loader {
   position: absolute;
   inset: 0;
   content: "";
-  background: linear-gradient(180deg, transparent 50%, rgb(6 3 9 / 0.6));
+  background: linear-gradient(180deg, transparent 50%, rgb(5 7 10 / 0.6));
 }
 
 .project-card__media img {
@@ -827,7 +831,7 @@ body.loaded .loader {
   gap: 1.2rem;
   padding: 2rem var(--gutter);
   border-top: 1px solid var(--line);
-  background: rgb(6 3 9 / 0.88);
+  background: rgb(5 7 10 / 0.88);
   color: var(--text-dim);
   font-size: 0.68rem;
 }
@@ -849,7 +853,7 @@ body.loaded .loader {
   color: var(--text);
   background:
     radial-gradient(circle at 90% 10%, rgb(122 16 24 / 0.24), transparent 40%),
-    rgb(8 4 13 / 0.96);
+    rgb(8 11 16 / 0.96);
   box-shadow:
     0 2rem 8rem rgb(0 0 0 / 0.8),
     0 0 4rem rgb(122 16 24 / 0.18);
@@ -857,7 +861,7 @@ body.loaded .loader {
 }
 
 .project-dialog::backdrop {
-  background: rgb(2 1 4 / 0.76);
+  background: rgb(2 3 5 / 0.76);
   backdrop-filter: blur(8px);
 }
 

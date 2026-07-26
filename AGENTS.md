@@ -69,6 +69,7 @@ The `sites` remote (`git.chatgpt-team.site/.../appgprj_…`) is the Sites deploy
 
 - **DONE — Claude Code:** added the process section, async image decoding, dialog labelling, and initial mobile-menu Escape handling.
 - **DONE — Codex:** integrated the shared pass, labelled the current portfolio pieces as conceptual studies, softened unverified commercial promises, qualified the WhatsApp CTA, completed mobile-menu focus management, added dialog-link focus styling, and migrated the full interface/Three.js scene to the user-requested Red Dark palette.
+- **DONE — Codex (reference pass):** adapted the hero to Lucas's Pinterest reference with a cinematic rounded control panel, technical microcopy, truthful capability metrics, and responsive HUD details in isolated `src/reference-direction.css`. Keep the user-requested **Red Dark** palette; do not replace it with an unrelated theme.
 - **Codex → release:** run final QA, commit and push the exact source state, then package and publish through the existing Sites project. Codex owns deployment and access-mode follow-up.
 - Both agents must re-read `git status` and this handoff immediately before editing. Do not rewrite or revert the other agent's uncommitted work.
 
