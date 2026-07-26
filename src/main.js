@@ -297,9 +297,9 @@ function createIris() {
   const irisMaterial = new THREE.ShaderMaterial({
     uniforms: {
       uTime: { value: 0 },
-      uViolet: { value: new THREE.Color(0x7a1018) },
-      uMagenta: { value: new THREE.Color(0xd52b3f) },
-      uPink: { value: new THREE.Color(0xff6b78) }
+      uViolet: { value: new THREE.Color(0x2e4257) },
+      uMagenta: { value: new THREE.Color(0x6f8fae) },
+      uPink: { value: new THREE.Color(0xd6e4f0) }
     },
     vertexShader: `
       uniform float uTime;
@@ -348,7 +348,7 @@ function createIris() {
   const outerRing = new THREE.Mesh(
     new THREE.TorusGeometry(2.58, 0.026, 16, 220),
     new THREE.MeshBasicMaterial({
-      color: 0xff6b78,
+      color: 0xd6e4f0,
       transparent: true,
       opacity: 0.52,
       blending: THREE.AdditiveBlending
@@ -358,13 +358,13 @@ function createIris() {
 
   const filamentMaterials = [
     new THREE.LineBasicMaterial({
-      color: 0xd52b3f,
+      color: 0x6f8fae,
       transparent: true,
       opacity: 0.4,
       blending: THREE.AdditiveBlending
     }),
     new THREE.LineBasicMaterial({
-      color: 0x7a1018,
+      color: 0x2e4257,
       transparent: true,
       opacity: 0.54,
       blending: THREE.AdditiveBlending
@@ -389,7 +389,7 @@ function createIris() {
     group.add(new THREE.Line(geometry, filamentMaterials[index % 2]));
   }
 
-  const coreLight = new THREE.PointLight(0xd52b3f, 12, 12, 2);
+  const coreLight = new THREE.PointLight(0x6f8fae, 12, 12, 2);
   coreLight.position.set(0, 0, 2.2);
   group.add(coreLight);
 
@@ -401,9 +401,9 @@ function createParticles(isCompact) {
   const count = isCompact ? 650 : 1500;
   const positions = new Float32Array(count * 3);
   const colors = new Float32Array(count * 3);
-  const violet = new THREE.Color(0x7a1018);
-  const magenta = new THREE.Color(0xd52b3f);
-  const cyan = new THREE.Color(0xffb36b);
+  const violet = new THREE.Color(0x2e4257);
+  const magenta = new THREE.Color(0x6f8fae);
+  const cyan = new THREE.Color(0x9fc2e8);
 
   for (let index = 0; index < count; index += 1) {
     const positionIndex = index * 3;
@@ -445,8 +445,8 @@ function createShards() {
       metalness: 0.05
     }),
     new THREE.MeshStandardMaterial({
-      color: 0x2d1014,
-      emissive: 0x741520,
+      color: 0x141a22,
+      emissive: 0x2c3e52,
       emissiveIntensity: 0.45,
       roughness: 0.5
     })
@@ -480,7 +480,7 @@ function createAstronaut() {
     metalness: 0.08
   });
   const darkMaterial = new THREE.MeshPhysicalMaterial({
-    color: 0x080203,
+    color: 0x05070a,
     metalness: 0.65,
     roughness: 0.12,
     clearcoat: 1
@@ -535,8 +535,8 @@ function createAstronaut() {
   const orb = new THREE.Mesh(
     new THREE.SphereGeometry(0.13, 24, 24),
     new THREE.MeshStandardMaterial({
-      color: 0xffd4d8,
-      emissive: 0xd52b3f,
+      color: 0xdcecff,
+      emissive: 0x6f8fae,
       emissiveIntensity: 5,
       roughness: 0.1
     })
@@ -544,7 +544,7 @@ function createAstronaut() {
   orb.position.set(0, 0.05, 0.43);
   group.add(orb);
 
-  const orbLight = new THREE.PointLight(0xd52b3f, 7, 4, 2);
+  const orbLight = new THREE.PointLight(0x6f8fae, 7, 4, 2);
   orbLight.position.copy(orb.position);
   group.add(orbLight);
 
@@ -555,7 +555,7 @@ function createAstronaut() {
 function createSignalKnot() {
   const geometry = new THREE.TorusKnotGeometry(1.1, 0.28, 180, 20, 2, 5);
   const material = new THREE.MeshBasicMaterial({
-    color: 0x7a1018,
+    color: 0x2e4257,
     wireframe: true,
     transparent: true,
     opacity: 0.28,
@@ -616,7 +616,7 @@ function initializeThreeScene() {
   stage.appendChild(renderer.domElement);
 
   const scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x080203, 0.045);
+  scene.fog = new THREE.FogExp2(0x05070a, 0.045);
 
   const camera = new THREE.PerspectiveCamera(
     compact ? 55 : 48,
@@ -626,17 +626,17 @@ function initializeThreeScene() {
   );
   camera.position.set(0, 0, 8.5);
 
-  scene.add(new THREE.AmbientLight(0x641d24, 0.72));
+  scene.add(new THREE.AmbientLight(0x2a3a4e, 0.72));
 
-  const violetLight = new THREE.PointLight(0x7a1018, 12, 24, 2);
+  const violetLight = new THREE.PointLight(0x2e4257, 12, 24, 2);
   violetLight.position.set(-5, 4, 5);
   scene.add(violetLight);
 
-  const magentaLight = new THREE.PointLight(0xd52b3f, 9, 20, 2);
+  const magentaLight = new THREE.PointLight(0x6f8fae, 9, 20, 2);
   magentaLight.position.set(5, -2, 4);
   scene.add(magentaLight);
 
-  const cyanLight = new THREE.PointLight(0xffb36b, 2, 12, 2);
+  const cyanLight = new THREE.PointLight(0x9fc2e8, 2, 12, 2);
   cyanLight.position.set(2, 4, -2);
   scene.add(cyanLight);
 

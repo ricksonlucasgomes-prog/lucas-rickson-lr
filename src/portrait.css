@@ -23,9 +23,9 @@
   content: "";
   transform: translate(-50%, -50%);
   background: radial-gradient(circle,
-    rgb(122 16 24 / 0.55) 0%,
-    rgb(213 43 63 / 0.28) 34%,
-    rgb(122 16 24 / 0.08) 55%,
+    rgb(46 66 87 / 0.55) 0%,
+    rgb(111 143 174 / 0.28) 34%,
+    rgb(46 66 87 / 0.08) 55%,
     transparent 72%);
   filter: blur(6px);
 }
@@ -36,7 +36,7 @@
   height: auto;
   /* Violet rim light so the cutout reads as lit by the scene behind it. */
   filter:
-    drop-shadow(0 0 1.4rem rgb(122 16 24 / 0.45))
+    drop-shadow(0 0 1.4rem rgb(46 66 87 / 0.45))
     drop-shadow(0 0.8rem 2.4rem rgb(0 0 0 / 0.55))
     contrast(1.04)
     saturate(1.05);
@@ -51,7 +51,7 @@
   height: 22%;
   pointer-events: none;
   content: "";
-  background: linear-gradient(180deg, transparent, var(--void, #080203) 92%);
+  background: linear-gradient(180deg, transparent, var(--void, #05070a) 92%);
 }
 
 @media (min-width: 64rem) {
@@ -67,7 +67,7 @@
 @media (prefers-reduced-motion: reduce) {
   .portrait-frame img {
     filter:
-      drop-shadow(0 0 1.4rem rgb(122 16 24 / 0.45))
+      drop-shadow(0 0 1.4rem rgb(46 66 87 / 0.45))
       drop-shadow(0 0.8rem 2.4rem rgb(0 0 0 / 0.55));
   }
 }

@@ -4,7 +4,7 @@ Two AI agents work on this repo simultaneously. **Read this before editing; upda
 
 ## Project
 
-Personal landing page for Lucas Rickson — "Red Dark" art direction (dark macro-surrealism, oxblood `#7a1018` / crimson `#d52b3f`, rare warm accent `#ffb36b` ≤5%, void `#080203`). Stack: Vite 7 + Three.js, deployed on Netlify (`netlify.toml`, build → `dist/`). UI copy in pt-BR; code/comments in English.
+Personal landing page for Lucas Rickson — "Obsidian Steel" art direction (cinematic dark monochrome per Lucas's Tesla-Cybertruck-style Pinterest reference, 2026-07-26: deep steel `#2e4257` / steel blue `#6f8fae`, ice glow `#d6e4f0`, rare icy accent `#9fc2e8` ≤5%, void `#05070a`). This SUPERSEDES the earlier "Red Dark" pivot — Lucas's reference is cold, not red. Stack: Vite 7 + Three.js, deployed on Netlify (`netlify.toml`, build → `dist/`). UI copy in pt-BR; code/comments in English.
 
 ## Repository
 
@@ -40,6 +40,7 @@ The `sites` remote (`git.chatgpt-team.site/.../appgprj_…`) is the Sites deploy
 
   Desktop went 596→244 ms FCP and 900→428 ms LCP. **Do not revert this to a plain stylesheet link.**
 - **DONE (2026-07-26): "Processo" section + professional polish pass.** New `#processo` section (4 steps: Descoberta, Direção, Produção, Lançamento) between Serviços and Sobre, styled in its own `src/process.css` (same ownership pattern as works-filter/portrait). **It is deliberately NOT a `.scene-section`** — the Three.js `states` array in `main.js` has exactly one entry per scene-section, so adding it there would break `interpolateState`. Section kickers renumbered (Sobre → 04, Próxima missão → 05) and "Processo" added to the main nav. Also: `og:site_name` meta, `aria-labelledby`/`aria-describedby` on the project dialog, `decoding="async"` on all lazy images, and Escape now closes the mobile menu (small a11y addition inside `initializeInterface` — flagging since `main.js` is Codex's). Verified: clean build, no horizontal overflow at 375/1440, section renders correctly in both viewports, no console errors.
+- **DONE (2026-07-26): "Obsidian Steel" retheme per Lucas's Pinterest reference.** Lucas sent a Tesla-Cybertruck-style reference (cold graphite/steel monochrome) after saying he disliked the violet iris. Converted the entire palette from Red Dark to Obsidian Steel: value-swap of every color literal in `src/*.css` + `src/main.js` (var names kept as aliases), neutralized the `hue-rotate(-55deg)` brand-mark filters, and regraded ALL raster assets in place with ImageMagick (works/*.webp, lucas-rickson.webp cutout — alpha preserved —, og.jpg, logo-mark.png, favicon.png) to a desaturated cool grade. Codex's HUD hero structure kept intact; "Red Dark — 2026" HUD label renamed. Also: netlify cache headers narrowed (immutable only for hashed js/css; 1-day must-revalidate for images), sitemap lastmod bumped, `<title>` unified with og/twitter titles, `twitter:image:alt` + `apple-touch-icon` added. Verified steel render at 1440/375 across all sections, clean build.
 - QA/validation: build checks, viewport tests (note: verified no horizontal overflow at 360/768/1440 via puppeteer; Chrome headless `--window-size` below 500px lies). Mobile pass 2026-07-25: portrait, six cards, filter chips and the project dialog all verified at 360/768.
 
 ### Codex
