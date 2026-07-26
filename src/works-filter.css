@@ -2,7 +2,7 @@
    Filter behaviour lives in main.js (applyProjectFilter, owned by Codex).
    Kept in its own file so it never collides with styles.css.
    Visual language borrows the glitch/RGB-split energy of the neon
-   reference art, but stays inside the Neural Violet palette. */
+   reference art, but stays inside the Red Dark palette. */
 
 .works-filter {
   position: relative;
@@ -16,10 +16,10 @@
 .filter-chip {
   position: relative;
   padding: 0.55rem 1.15rem;
-  border: 1px solid rgb(139 47 214 / 0.28);
+  border: 1px solid rgb(122 16 24 / 0.28);
   border-radius: 999px;
-  color: var(--text-dim, #9b8fae);
-  background: rgb(139 47 214 / 0.06);
+  color: var(--text-dim, #b39a9e);
+  background: rgb(122 16 24 / 0.06);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   font-family: var(--font-display, "Space Grotesk", sans-serif);
@@ -38,25 +38,25 @@
 /* One-frame RGB split on hover — the glitch cut from the reference art. */
 .filter-chip:hover,
 .filter-chip:focus-visible {
-  color: var(--text, #ede6f5);
-  border-color: rgb(227 49 184 / 0.5);
-  text-shadow: -1.5px 0 var(--magenta, #e331b8), 1.5px 0 var(--cyan, #52e8e0);
+  color: var(--text, #f5e9ea);
+  border-color: rgb(213 43 63 / 0.5);
+  text-shadow: -1.5px 0 var(--magenta, #d52b3f), 1.5px 0 var(--cyan, #ffb36b);
 }
 
 .filter-chip:focus-visible {
-  outline: 2px solid var(--cyan, #52e8e0);
+  outline: 2px solid var(--cyan, #ffb36b);
   outline-offset: 4px;
 }
 
 .filter-chip.is-active {
   color: #ffffff;
-  border-color: rgb(255 122 207 / 0.6);
+  border-color: rgb(255 107 120 / 0.6);
   background:
     radial-gradient(circle at 28% 20%, rgb(255 255 255 / 0.22), transparent 40%),
-    linear-gradient(135deg, rgb(139 47 214 / 0.85), rgb(227 49 184 / 0.72));
+    linear-gradient(135deg, rgb(122 16 24 / 0.85), rgb(213 43 63 / 0.72));
   box-shadow:
-    0 0 0.9rem rgb(227 49 184 / 0.35),
-    0 0 2.4rem rgb(139 47 214 / 0.22);
+    0 0 0.9rem rgb(213 43 63 / 0.35),
+    0 0 2.4rem rgb(122 16 24 / 0.22);
   text-shadow: none;
 }
 
@@ -66,9 +66,9 @@
   z-index: 2;
   margin: 0 0 2rem;
   padding: 1.6rem 1.4rem;
-  border: 1px dashed rgb(139 47 214 / 0.3);
+  border: 1px dashed rgb(122 16 24 / 0.3);
   border-radius: 1rem;
-  color: var(--text-dim, #9b8fae);
+  color: var(--text-dim, #b39a9e);
   text-align: center;
   font-size: 0.9rem;
 }

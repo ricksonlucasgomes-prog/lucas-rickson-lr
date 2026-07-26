@@ -91,37 +91,37 @@ const loaderTimer = window.setInterval(() => {
 
 const projectDetails = {
   iris: {
-    category: "Identidade visual · Direção de arte IA",
+    category: "Estudo conceitual · Identidade visual · Direção de arte IA",
     title: "Íris",
     description:
       "Um sistema visual construído a partir de luz orgânica, macrotexturas e pulsos neurais. A identidade nasce para hipnotizar sem perder clareza ou função."
   },
   fragmento: {
-    category: "Vídeo · Motion · Inteligência artificial",
+    category: "Estudo conceitual · Vídeo · Motion · Inteligência artificial",
     title: "Fragmento",
     description:
       "Cerâmica, ruptura e energia interna traduzem uma marca em transformação. O conceito combina geração por IA, composição e acabamento de motion."
   },
   orbita: {
-    category: "Web design · Experiência 3D",
+    category: "Estudo conceitual · Web design · Experiência 3D",
     title: "Órbita",
     description:
       "Uma jornada digital guiada por profundidade, escala e descoberta. O usuário deixa de apenas navegar e passa a atravessar a narrativa."
   },
   pulso: {
-    category: "Meta Ads · Estratégia criativa",
+    category: "Estudo conceitual · Meta Ads · Estratégia criativa",
     title: "Pulso",
     description:
       "Campanhas construídas como sistemas vivos: criativos, dados e iteração rápida trabalhando juntos para ampliar atenção e conversão."
   },
   sinal: {
-    category: "Podcast · Produção e pós-produção",
+    category: "Estudo conceitual · Podcast · Produção e pós-produção",
     title: "Sinal",
     description:
       "Um podcast tratado como produto visual: captação, edição, identidade e cortes verticais nascem juntos, para que cada episódio alimente as redes durante toda a semana."
   },
   vazio: {
-    category: "Filme de marca · IA generativa",
+    category: "Estudo conceitual · Filme de marca · IA generativa",
     title: "Vazio",
     description:
       "Um filme sobre o instante antes da ideia ganhar forma. Direção minimalista, contraste brutal e pequenos sinais de luz sustentam toda a atmosfera."
@@ -140,11 +140,22 @@ function initializeInterface() {
   const projectCards = [...document.querySelectorAll(".project-card")];
   const projectsGrid = document.querySelector("#projects-grid");
   const worksEmpty = document.querySelector("#works-empty");
+  const headerBrand = header.querySelector(".brand");
+  const backgroundAreas = [document.querySelector("main"), document.querySelector("footer")];
 
-  function closeMenu() {
+  function setMenuBackgroundInert(isInert) {
+    headerBrand.inert = isInert;
+    backgroundAreas.forEach((area) => {
+      area.inert = isInert;
+    });
+  }
+
+  function closeMenu({ restoreFocus = false } = {}) {
     menuButton.setAttribute("aria-expanded", "false");
     navigation.classList.remove("is-open");
     document.body.classList.remove("menu-open");
+    setMenuBackgroundInert(false);
+    if (restoreFocus) menuButton.focus();
   }
 
   menuButton.addEventListener("click", () => {
@@ -152,10 +163,19 @@ function initializeInterface() {
     menuButton.setAttribute("aria-expanded", String(!isOpen));
     navigation.classList.toggle("is-open", !isOpen);
     document.body.classList.toggle("menu-open", !isOpen);
+    setMenuBackgroundInert(!isOpen);
+    if (!isOpen) navigation.querySelector("a").focus();
   });
 
   navigation.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", closeMenu);
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    if (menuButton.getAttribute("aria-expanded") === "true") {
+      closeMenu({ restoreFocus: true });
+    }
   });
 
   function applyProjectFilter(filter) {
@@ -263,9 +283,9 @@ function createIris() {
   const irisMaterial = new THREE.ShaderMaterial({
     uniforms: {
       uTime: { value: 0 },
-      uViolet: { value: new THREE.Color(0x8b2fd6) },
-      uMagenta: { value: new THREE.Color(0xe331b8) },
-      uPink: { value: new THREE.Color(0xff7acf) }
+      uViolet: { value: new THREE.Color(0x7a1018) },
+      uMagenta: { value: new THREE.Color(0xd52b3f) },
+      uPink: { value: new THREE.Color(0xff6b78) }
     },
     vertexShader: `
       uniform float uTime;
@@ -314,7 +334,7 @@ function createIris() {
   const outerRing = new THREE.Mesh(
     new THREE.TorusGeometry(2.58, 0.026, 16, 220),
     new THREE.MeshBasicMaterial({
-      color: 0xff7acf,
+      color: 0xff6b78,
       transparent: true,
       opacity: 0.52,
       blending: THREE.AdditiveBlending
@@ -324,13 +344,13 @@ function createIris() {
 
   const filamentMaterials = [
     new THREE.LineBasicMaterial({
-      color: 0xe331b8,
+      color: 0xd52b3f,
       transparent: true,
       opacity: 0.4,
       blending: THREE.AdditiveBlending
     }),
     new THREE.LineBasicMaterial({
-      color: 0x8b2fd6,
+      color: 0x7a1018,
       transparent: true,
       opacity: 0.54,
       blending: THREE.AdditiveBlending
@@ -355,7 +375,7 @@ function createIris() {
     group.add(new THREE.Line(geometry, filamentMaterials[index % 2]));
   }
 
-  const coreLight = new THREE.PointLight(0xe331b8, 12, 12, 2);
+  const coreLight = new THREE.PointLight(0xd52b3f, 12, 12, 2);
   coreLight.position.set(0, 0, 2.2);
   group.add(coreLight);
 
@@ -367,9 +387,9 @@ function createParticles(isCompact) {
   const count = isCompact ? 650 : 1500;
   const positions = new Float32Array(count * 3);
   const colors = new Float32Array(count * 3);
-  const violet = new THREE.Color(0x8b2fd6);
-  const magenta = new THREE.Color(0xe331b8);
-  const cyan = new THREE.Color(0x52e8e0);
+  const violet = new THREE.Color(0x7a1018);
+  const magenta = new THREE.Color(0xd52b3f);
+  const cyan = new THREE.Color(0xffb36b);
 
   for (let index = 0; index < count; index += 1) {
     const positionIndex = index * 3;
@@ -411,8 +431,8 @@ function createShards() {
       metalness: 0.05
     }),
     new THREE.MeshStandardMaterial({
-      color: 0x2a142f,
-      emissive: 0x5d147e,
+      color: 0x2d1014,
+      emissive: 0x741520,
       emissiveIntensity: 0.45,
       roughness: 0.5
     })
@@ -446,7 +466,7 @@ function createAstronaut() {
     metalness: 0.08
   });
   const darkMaterial = new THREE.MeshPhysicalMaterial({
-    color: 0x060309,
+    color: 0x080203,
     metalness: 0.65,
     roughness: 0.12,
     clearcoat: 1
@@ -501,8 +521,8 @@ function createAstronaut() {
   const orb = new THREE.Mesh(
     new THREE.SphereGeometry(0.13, 24, 24),
     new THREE.MeshStandardMaterial({
-      color: 0xffc7ef,
-      emissive: 0xe331b8,
+      color: 0xffd4d8,
+      emissive: 0xd52b3f,
       emissiveIntensity: 5,
       roughness: 0.1
     })
@@ -510,7 +530,7 @@ function createAstronaut() {
   orb.position.set(0, 0.05, 0.43);
   group.add(orb);
 
-  const orbLight = new THREE.PointLight(0xe331b8, 7, 4, 2);
+  const orbLight = new THREE.PointLight(0xd52b3f, 7, 4, 2);
   orbLight.position.copy(orb.position);
   group.add(orbLight);
 
@@ -521,7 +541,7 @@ function createAstronaut() {
 function createSignalKnot() {
   const geometry = new THREE.TorusKnotGeometry(1.1, 0.28, 180, 20, 2, 5);
   const material = new THREE.MeshBasicMaterial({
-    color: 0x8b2fd6,
+    color: 0x7a1018,
     wireframe: true,
     transparent: true,
     opacity: 0.28,
@@ -582,7 +602,7 @@ function initializeThreeScene() {
   stage.appendChild(renderer.domElement);
 
   const scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x060309, 0.045);
+  scene.fog = new THREE.FogExp2(0x080203, 0.045);
 
   const camera = new THREE.PerspectiveCamera(
     compact ? 55 : 48,
@@ -592,17 +612,17 @@ function initializeThreeScene() {
   );
   camera.position.set(0, 0, 8.5);
 
-  scene.add(new THREE.AmbientLight(0x5d3475, 0.72));
+  scene.add(new THREE.AmbientLight(0x641d24, 0.72));
 
-  const violetLight = new THREE.PointLight(0x8b2fd6, 12, 24, 2);
+  const violetLight = new THREE.PointLight(0x7a1018, 12, 24, 2);
   violetLight.position.set(-5, 4, 5);
   scene.add(violetLight);
 
-  const magentaLight = new THREE.PointLight(0xe331b8, 9, 20, 2);
+  const magentaLight = new THREE.PointLight(0xd52b3f, 9, 20, 2);
   magentaLight.position.set(5, -2, 4);
   scene.add(magentaLight);
 
-  const cyanLight = new THREE.PointLight(0x52e8e0, 2, 12, 2);
+  const cyanLight = new THREE.PointLight(0xffb36b, 2, 12, 2);
   cyanLight.position.set(2, 4, -2);
   scene.add(cyanLight);
 

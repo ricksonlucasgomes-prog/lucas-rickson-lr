@@ -3,12 +3,13 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#060309">
+    <meta name="theme-color" content="#080203">
     <meta
       name="description"
       content="Lucas Rickson, acadêmico de Ciência da Computação, cria experiências digitais imersivas: sites, produção de podcasts, vídeo, motion, VFX e tráfego pago com inteligência artificial."
     >
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Lucas Rickson">
     <meta property="og:locale" content="pt_BR">
     <meta
       property="og:url"
@@ -117,6 +118,8 @@
     <!-- Works category filter presentation; behaviour lives in main.js. -->
     <link rel="stylesheet" href="/src/works-filter.css">
     <link rel="stylesheet" href="/src/portrait.css">
+    <!-- Process section presentation; markup lives in the #processo section. -->
+    <link rel="stylesheet" href="/src/process.css">
   </head>
 
   <body>
@@ -159,10 +162,11 @@
       <nav class="main-nav" id="main-nav" aria-label="Navegação principal">
         <a href="#trabalhos">Trabalhos</a>
         <a href="#servicos">Serviços</a>
+        <a href="#processo">Processo</a>
         <a href="#sobre">Sobre</a>
         <a
           class="nav-contact"
-          href="https://wa.me/5562994349416?text=Ol%C3%A1%2C%20Lucas!%20Quero%20criar%20um%20projeto."
+          href="https://wa.me/5562994349416?text=Ol%C3%A1%2C%20Lucas!%20Quero%20solicitar%20uma%20proposta.%0A%0ATipo%20de%20projeto%3A%20%0AObjetivo%3A%20%0APrazo%20desejado%3A%20"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -212,12 +216,12 @@
         aria-labelledby="works-title"
       >
         <div class="section-heading reveal">
-          <p class="section-kicker">01 / Trabalhos selecionados</p>
+          <p class="section-kicker">01 / Estudos selecionados</p>
           <h2 id="works-title">Ideias que viraram <span>universos.</span></h2>
           <p>
-            Sites, campanhas, podcasts e filmes. Cada projeto combina direção
-            visual, tecnologia e estratégia. Filtre por área ou abra um
-            projeto para ver os detalhes.
+            Estudos conceituais de sites, campanhas, podcasts e filmes. Cada
+            direção explora como visual, tecnologia e estratégia podem
+            trabalhar juntos. Filtre por área ou abra um estudo.
           </p>
         </div>
 
@@ -258,10 +262,11 @@
             <span class="project-card__media">
               <img
                 src="/assets/works/iris.webp"
-                alt="Íris violeta luminosa em macro"
+                alt="Íris vermelha luminosa em macro"
                 width="1536"
                 height="1024"
                 loading="lazy"
+                decoding="async"
               >
             </span>
             <span class="project-card__meta">
@@ -284,6 +289,7 @@
                 width="1536"
                 height="1024"
                 loading="lazy"
+                decoding="async"
               >
             </span>
             <span class="project-card__meta">
@@ -302,10 +308,11 @@
             <span class="project-card__media">
               <img
                 src="/assets/works/orbita.webp"
-                alt="Astronauta segurando uma esfera violeta no espaço"
+                alt="Astronauta segurando uma esfera carmesim no espaço"
                 width="1536"
                 height="1024"
                 loading="lazy"
+                decoding="async"
               >
             </span>
             <span class="project-card__meta">
@@ -324,10 +331,11 @@
             <span class="project-card__media">
               <img
                 src="/assets/works/pulso.webp"
-                alt="Anéis concêntricos de luz violeta pulsando na escuridão"
+                alt="Anéis concêntricos de luz vermelha pulsando na escuridão"
                 width="1264"
                 height="848"
                 loading="lazy"
+                decoding="async"
               >
             </span>
             <span class="project-card__meta">
@@ -346,10 +354,11 @@
             <span class="project-card__media">
               <img
                 src="/assets/works/sinal.webp"
-                alt="Microfone de estúdio iluminado por neon violeta com ondas sonoras luminosas"
+                alt="Microfone de estúdio iluminado por neon vermelho com ondas sonoras luminosas"
                 width="1264"
                 height="848"
                 loading="lazy"
+                decoding="async"
               >
             </span>
             <span class="project-card__meta">
@@ -372,6 +381,7 @@
                 width="1264"
                 height="848"
                 loading="lazy"
+                decoding="async"
               >
             </span>
             <span class="project-card__meta">
@@ -447,6 +457,59 @@
         </div>
       </section>
 
+      <!-- Process section. Deliberately NOT a .scene-section: the Three.js
+           states array in main.js has exactly one entry per scene-section,
+           so new sections must stay out of that list. -->
+      <section
+        class="process section-shell"
+        id="processo"
+        aria-labelledby="process-title"
+      >
+        <div class="section-heading reveal">
+          <p class="section-kicker">03 / Processo</p>
+          <h2 id="process-title">Método, do briefing ao <span>lançamento.</span></h2>
+          <p>
+            Cada projeto segue um caminho claro. Você sabe o que acontece,
+            quando acontece e o que recebe em cada etapa.
+          </p>
+        </div>
+
+        <ol class="process__steps">
+          <li class="process-step reveal">
+            <span class="process-step__number" aria-hidden="true">01</span>
+            <h3>Descoberta</h3>
+            <p>
+              Conversa direta para entender objetivo, público e referências.
+              A partir daí, organizamos prioridades, escopo e próximos passos.
+            </p>
+          </li>
+          <li class="process-step reveal">
+            <span class="process-step__number" aria-hidden="true">02</span>
+            <h3>Direção</h3>
+            <p>
+              Conceito visual, moodboard e protótipo alinham a linguagem do
+              projeto antes de avançarmos para a produção.
+            </p>
+          </li>
+          <li class="process-step reveal">
+            <span class="process-step__number" aria-hidden="true">03</span>
+            <h3>Produção</h3>
+            <p>
+              Design, código, edição ou campanha ganham forma com pontos de
+              validação definidos conforme o escopo.
+            </p>
+          </li>
+          <li class="process-step reveal">
+            <span class="process-step__number" aria-hidden="true">04</span>
+            <h3>Lançamento</h3>
+            <p>
+              A entrega é revisada e preparada para o canal certo, com uma
+              base organizada para os próximos ciclos do projeto.
+            </p>
+          </li>
+        </ol>
+      </section>
+
       <section
         class="about scene-section section-shell"
         id="sobre"
@@ -463,10 +526,11 @@
             width="640"
             height="641"
             loading="lazy"
+            decoding="async"
           >
         </figure>
         <div class="about__content">
-          <p class="section-kicker reveal">03 / Sobre mim</p>
+          <p class="section-kicker reveal">04 / Sobre mim</p>
           <h2 class="reveal" id="about-title">
             Explorando o que ninguém <span>viu ainda.</span>
           </h2>
@@ -514,17 +578,17 @@
       >
         <div class="contact__halo" aria-hidden="true"></div>
         <div class="contact__content">
-          <p class="section-kicker reveal">04 / Próxima missão</p>
+          <p class="section-kicker reveal">05 / Próxima missão</p>
           <h2 class="reveal" id="contact-title">
             Vamos criar algo que ainda <span>não existe?</span>
           </h2>
           <p class="reveal">
-            Conte sua ideia. Eu transformo o primeiro sinal em uma experiência
-            visual pronta para ganhar o mundo.
+            Conte o tipo de projeto, seu objetivo e o prazo desejado. Eu
+            respondo com as perguntas certas e os próximos passos.
           </p>
           <a
             class="orb-button orb-button--large reveal"
-            href="https://wa.me/5562994349416?text=Ol%C3%A1%2C%20Lucas!%20Quero%20criar%20um%20projeto."
+            href="https://wa.me/5562994349416?text=Ol%C3%A1%2C%20Lucas!%20Quero%20solicitar%20uma%20proposta.%0A%0ATipo%20de%20projeto%3A%20%0AObjetivo%3A%20%0APrazo%20desejado%3A%20"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -567,7 +631,12 @@
       <p>© 2026 · Agência Fennix</p>
     </footer>
 
-    <dialog class="project-dialog" id="project-dialog">
+    <dialog
+      class="project-dialog"
+      id="project-dialog"
+      aria-labelledby="dialog-title"
+      aria-describedby="dialog-description"
+    >
       <button class="dialog-close" id="dialog-close" type="button" aria-label="Fechar projeto">×</button>
       <p class="section-kicker" id="dialog-category"></p>
       <h2 id="dialog-title"></h2>

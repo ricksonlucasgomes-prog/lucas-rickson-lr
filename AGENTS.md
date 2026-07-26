@@ -4,7 +4,7 @@ Two AI agents work on this repo simultaneously. **Read this before editing; upda
 
 ## Project
 
-Personal landing page for Lucas Rickson — "Neural Violet" art direction (dark macro-surrealism, violet `#8b2fd6` / magenta `#e331b8`, rare cyan `#52e8e0` ≤5%, void `#060309`). Stack: Vite 7 + Three.js, deployed on Netlify (`netlify.toml`, build → `dist/`). UI copy in pt-BR; code/comments in English.
+Personal landing page for Lucas Rickson — "Red Dark" art direction (dark macro-surrealism, oxblood `#7a1018` / crimson `#d52b3f`, rare warm accent `#ffb36b` ≤5%, void `#080203`). Stack: Vite 7 + Three.js, deployed on Netlify (`netlify.toml`, build → `dist/`). UI copy in pt-BR; code/comments in English.
 
 ## Repository
 
@@ -39,10 +39,12 @@ The `sites` remote (`git.chatgpt-team.site/.../appgprj_…`) is the Sites deploy
   | loader cleared | 16234 ms | **5291 ms** |
 
   Desktop went 596→244 ms FCP and 900→428 ms LCP. **Do not revert this to a plain stylesheet link.**
+- **DONE (2026-07-26): "Processo" section + professional polish pass.** New `#processo` section (4 steps: Descoberta, Direção, Produção, Lançamento) between Serviços and Sobre, styled in its own `src/process.css` (same ownership pattern as works-filter/portrait). **It is deliberately NOT a `.scene-section`** — the Three.js `states` array in `main.js` has exactly one entry per scene-section, so adding it there would break `interpolateState`. Section kickers renumbered (Sobre → 04, Próxima missão → 05) and "Processo" added to the main nav. Also: `og:site_name` meta, `aria-labelledby`/`aria-describedby` on the project dialog, `decoding="async"` on all lazy images, and Escape now closes the mobile menu (small a11y addition inside `initializeInterface` — flagging since `main.js` is Codex's). Verified: clean build, no horizontal overflow at 375/1440, section renders correctly in both viewports, no console errors.
 - QA/validation: build checks, viewport tests (note: verified no horizontal overflow at 360/768/1440 via puppeteer; Chrome headless `--window-size` below 500px lies). Mobile pass 2026-07-25: portrait, six cards, filter chips and the project dialog all verified at 360/768.
 
 ### Codex
 - Owns the Three.js scene (`src/main.js`) and stylesheet (`src/styles.css`) — Claude edits those only for agreed fixes.
+- **DONE (2026-07-26):** QA pass for the concurrent professionalization work: production build and `git diff --check` pass; loaded hero verified visually at 1440×1000 and 390×844. Local Vite server remains available on port 5173 for Lucas's review. No overlap with Claude-owned filter, portrait, imagery, SEO, or font work.
 - **DONE (2026-07-25):** added truthful Person structured data, crawler rules, and a sitemap for the production URL.
 - **DONE (2026-07-25):** prepared the existing Vite site for owner-only Sites hosting with a Cloudflare Worker-compatible static entry and persisted the Sites project id.
 - **DONE (2026-07-25):** published the owner-only Sites version and replaced provisional social/canonical paths with the production URL.
@@ -62,6 +64,13 @@ The `sites` remote (`git.chatgpt-team.site/.../appgprj_…`) is the Sites deploy
 ## Known open items (unclaimed)
 
 - Wait for Lucas's real project materials before replacing the concept cases.
+
+## Active handoff (2026-07-26)
+
+- **DONE — Claude Code:** added the process section, async image decoding, dialog labelling, and initial mobile-menu Escape handling.
+- **DONE — Codex:** integrated the shared pass, labelled the current portfolio pieces as conceptual studies, softened unverified commercial promises, qualified the WhatsApp CTA, completed mobile-menu focus management, added dialog-link focus styling, and migrated the full interface/Three.js scene to the user-requested Red Dark palette.
+- **Codex → release:** run final QA, commit and push the exact source state, then package and publish through the existing Sites project. Codex owns deployment and access-mode follow-up.
+- Both agents must re-read `git status` and this handoff immediately before editing. Do not rewrite or revert the other agent's uncommitted work.
 
 ## Verified state (Claude, 2026-07-25)
 
