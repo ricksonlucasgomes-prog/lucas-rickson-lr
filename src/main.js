@@ -440,7 +440,7 @@ function createShards() {
   const geometry = new THREE.TetrahedronGeometry(0.18, 0);
   const materials = [
     new THREE.MeshStandardMaterial({
-      color: 0xded6e4,
+      color: 0xd8dde3,
       roughness: 0.78,
       metalness: 0.05
     }),
@@ -475,7 +475,7 @@ function createShards() {
 function createAstronaut() {
   const group = new THREE.Group();
   const suitMaterial = new THREE.MeshStandardMaterial({
-    color: 0xe4dfe8,
+    color: 0xdfe4ea,
     roughness: 0.72,
     metalness: 0.08
   });
